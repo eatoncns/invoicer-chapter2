@@ -131,6 +131,7 @@ func (iv *invoicer) getInvoice(w http.ResponseWriter, r *http.Request) {
 }
 
 func (iv *invoicer) postInvoice(w http.ResponseWriter, r *http.Request) {
+	w.Header().Add("Content-Security-Policy", "default-src 'self';")
 	log.Println("posting new invoice")
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -200,6 +201,7 @@ func (iv *invoicer) deleteInvoice(w http.ResponseWriter, r *http.Request) {
 }
 
 func (iv *invoicer) getIndex(w http.ResponseWriter, r *http.Request) {
+	w.Header().Add("Content-Security-Policy", "default-src 'self';")
 	log.Println("serving index page")
 	w.Write([]byte(`
 <!DOCTYPE html>
